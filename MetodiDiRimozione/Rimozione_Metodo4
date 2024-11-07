@@ -1,0 +1,84 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.fft import fft, fftfreq
+from Lettura_Dati import leggi_file
+from background_ds import Background_ds
+import gdown
+from pydrive.auth import GoogleAuth
+from pydrive.drive import GoogleDrive
+from matplotlib.backends.backend_pdf import PdfPages
+import os
+
+# Link con l'ID del file
+file_url = "https://drive.google.com/uc?id=15LSYaKYgg9GrVJgwSE_dBTPDefqShAaD"
+# Scarica il file da Google Drive
+gdown.download(file_url, 'nome_file_destinazione.txt', quiet=False)
+
+# Leggi il file
+file_path = "nome_file_destinazione.txt"
+frames = leggi_file(file_path)
+frames_array = np.array(frames)
+
+# Parametri
+a = 10  # fattore di downsampling
+Nm = 9  # numero di frame per blocco
+T = 1 * Nm
+N = (256 * Nm) // a
+print(N)
+bg = Background_ds(Nm, a)
+background = np.array(bg)
+print(background.shape)
+
+# Numero totale di finestre
+total_windows = len(frames_array) // Nm
+
+block_idx = 0
+intervallo_tempo = 1
+
+max_amplitudes_BRPM = []  # lista per memorizzare i respiri
+max_amplitudes_BPM = []  # lista per memorizzare il battito
+
+# Apri un PdfPages per salvare tutti i plot in un unico PDF
+pdf_filename = "grafici_output.pdf"
+with PdfPages(pdf_filename) as pdf:
+    # Ciclo per eseguire il downsampling e il calcolo
+    while intervallo_tempo <= total_windows:
+        start_idx = block_idx
+        end_idx = block_idx + Nm
+
+        block_frames = frames_array[start_idx:end_idx]
+        block_frames = block_frames.flatten()
+        block_frames = block_frames[::a]
+        combined_fft = np.fft.fft(block_frames, n=N)
+        combined_fft_no_background = combined_fft[:N//2] - background[:N//2]
+        xf = fftfreq(N, T/N)[:N//2]
+        fft_amplitudes_selected = combined_fft_no_background[(xf > 0) & (xf <= 1)]
+        max_amplitudes_BRPM_index = np.argmax(fft_amplitudes_selected)
+        max_amplitudes_BRPM.append(np.abs(fft_amplitudes_selected[max_amplitudes_BRPM_index]))
+
+        fft_amplitudes_selected2 = combined_fft_no_background[(xf > 0.66) & (xf <= 6.66)]
+        max_amplitudes_BPM_index = np.argmax(fft_amplitudes_selected2)
+        max_amplitudes_BPM.append(np.abs(fft_amplitudes_selected2[max_amplitudes_BPM_index]))
+
+        # Crea il grafico e aggiungilo al PDF
+        plt.figure(figsize=(8, 4))
+        plt.plot(xf, np.abs(combined_fft_no_background))
+        plt.title(f'Intervallo di tempo {intervallo_tempo} ({start_idx} - {end_idx})', fontsize=16)
+        plt.xlabel('Frequenza [Hz]', fontsize=16)
+        plt.ylabel('Ampiezza [au]', fontsize=16)
+        plt.grid(True)
+        
+        # Salva la figura corrente nel PDF
+        pdf.savefig()
+        plt.close()
+
+        block_idx += Nm
+        intervallo_tempo += 1
+
+# Calcola la media dei massimi valori di ampiezza
+BRPM = np.mean(max_amplitudes_BRPM)
+BPM = np.mean(max_amplitudes_BPM)
+print("Media dei massimi valori di ampiezza tra 0 e 1 Hz:", BRPM)
+print("BRPM:", (BRPM / 2) * 60)
+print("Media dei massimi valori di ampiezza tra 0.66 e 6.66 Hz:", BPM)
+print("BPM:", BPM * 60)
