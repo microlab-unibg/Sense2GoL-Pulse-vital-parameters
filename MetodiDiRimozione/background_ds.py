@@ -2,6 +2,11 @@ import numpy as np
 from Lettura_Dati import leggi_file
 from Lettura_Dati import leggi_file_COMPLESSI
 from numpy.fft import fft
+import gdown
+from pydrive.auth import GoogleAuth
+from pydrive.drive import GoogleDrive
+from matplotlib.backends.backend_pdf import PdfPages
+import os
 
 def Background_ds(Nm, a):
    # Link con l'ID del file
