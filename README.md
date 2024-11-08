@@ -32,5 +32,5 @@ Questi file saranno salvati nella stessa cartella di Google Drive dove hai caric
 Di seguito sono riportati i link per aprire i codici su colab:
 [Esegui su Google Colab il metodo 4](https://colab.research.google.com/github/microlab-unibg/Sense2Gol-Pulse-vital-Parameters/blob/Caricamento-file-e-collegamento-al-drive/MetodiDiRimozione/RImozione_Metodo4_(2).ipynb)
 PROVA!!!
-[Esegui su Google Colab il metodo 3](https://colab.research.google.com/github/microlab-unibg/Sense2Gol-Pulse-vital-Parameters/blob/Caricamento-file-e-collegamento-al-drive/MetodiDiRimozione/Rimozione_Metodo3.ipynb)
+[Esegui su Google Colab il metodo 3](https://colab.research.google.com/github/microlab-unibg/Sense2Gol-Pulse-vital-Parameters/blob/Caricamento-file-e-collegamento-al-drive/MetodiDiRimozione/Rimozione_Metodo3_def.ipynb)
 
