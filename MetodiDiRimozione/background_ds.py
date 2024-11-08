@@ -40,7 +40,13 @@ def Background_ds(Nm, a):
 
 
 def Background_ds_COMPLESSA(Nm,a):
-    file_path = "Desktop/Dati/ProveVere/Sense2GoL Pulse_record_20240524-175110.raw.txt"
+   # Link con l'ID del file
+    file_url = "https://drive.google.com/uc?id=1oF0mh5XYgx06jyDgADqXDVMGyvdEGKwO"
+    # Scarica il file da Google Drive
+    gdown.download(file_url, 'dati.txt', quiet=False)
+    
+    # Leggi il file
+    file_path = "dati.txt"
     frames = leggi_file_COMPLESSI(file_path)
     frames_array = np.array(frames)
     
