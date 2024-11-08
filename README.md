@@ -9,8 +9,7 @@ Per caricare il file dei dati in Colab, segui questi passaggi:
 -Nella finestra di condivisione, clicca su "Copia link".
 -Ora, prendi il link che viene generato. Esempio di link: https://drive.google.com/file/d/1dXxm0qOTbxTC-DCaL9XqnV2_lEN_Cdx1/view?usp=drive_link
 Modifica il link per ottenere il formato corretto per il download diretto. Trasforma il link in questo formato: https://drive.google.com/uc?export=download&id=1dXxm0qOTbxTC-DCaL9XqnV2_lEN_Cdx1
-Ora puoi usare questo file_url nel cod
-ice per caricare i dati.
+Ora puoi usare questo file_url nel codice per caricare i dati.
 
 2. Eseguire il Codice su Google Colab
 Puoi eseguire il codice direttamente su Google Colab utilizzando il seguente link:
@@ -31,6 +30,6 @@ Questi file saranno salvati nella stessa cartella di Google Drive dove hai caric
 
 Di seguito sono riportati i link per aprire i codici su colab:
 [Esegui su Google Colab il metodo 4](https://colab.research.google.com/github/microlab-unibg/Sense2Gol-Pulse-vital-Parameters/blob/Caricamento-file-e-collegamento-al-drive/MetodiDiRimozione/RImozione_Metodo4_(2).ipynb)
-PROVA!!!
+
 [Esegui su Google Colab il metodo 3](https://colab.research.google.com/github/microlab-unibg/Sense2Gol-Pulse-vital-Parameters/blob/Caricamento-file-e-collegamento-al-drive/MetodiDiRimozione/Rimozione_Metodo3_def.ipynb)
 
