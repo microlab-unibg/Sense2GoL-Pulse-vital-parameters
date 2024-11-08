@@ -1,9 +1,20 @@
 import numpy as np
 from Lettura_Dati import leggi_file
 from numpy.fft import fft
+import gdown
+from pydrive.auth import GoogleAuth
+from pydrive.drive import GoogleDrive
+from matplotlib.backends.backend_pdf import PdfPages
+import os
 
 def Background_PiuFrame(Nm):
-    file_path = "Desktop/Dati/ProveVere/Sense2GoL Pulse_record_20240524-175110.raw.txt"
+     # Link con l'ID del file
+    file_url = "https://drive.google.com/uc?id=1oF0mh5XYgx06jyDgADqXDVMGyvdEGKwO"
+    # Scarica il file da Google Drive
+    gdown.download(file_url, 'dati.txt', quiet=False)
+    
+    # Leggi il file
+    file_path = "dati.txt"
     frames = leggi_file(file_path)
     frames_array = np.array(frames)
     
