@@ -43,7 +43,7 @@ Di seguito sono riportati i link per aprire i codici su colab:
 
 Altri codici: 
 
-[Esegui HQ_analisi](https://colab.research.google.com/github/microlab-unibg/Sense2Gol-Pulse-vital-Parameters/blob/Caricamento-file-e-collegamento-al-drive/HQ_analisi.ipynb)
+[Esegui HQ_analisi](https://colab.research.google.com/github/microlab-unibg/Sense2Gol-Pulse-vital-Parameters/blob/Caricamento-file-e-collegamento-al-drive/HQ_analisi_def.ipynb)
 
 [Esegui Matrice di Correlazione](https://colab.research.google.com/github/microlab-unibg/Sense2Gol-Pulse-vital-Parameters/blob/Caricamento-file-e-collegamento-al-drive/Marice_Correlazione.ipynb)
 
